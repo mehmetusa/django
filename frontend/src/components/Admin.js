@@ -94,6 +94,7 @@ const Admin = () => {
                   <Th>List Price</Th>
                   <Th>Cost</Th>
                   <Th>Quantity</Th>
+                  <Th>Date created</Th>
                   <Th>ACTION</Th>
                 </Tr>
               </Thead>
@@ -104,8 +105,9 @@ const Admin = () => {
                     <Td>{row.department}</Td>
                     <Td>{row.category}</Td>
                     <Td>{row.listPrice}</Td>
-                    <Td>{row.cost}</Td>
+                    <Td>{row.cost}</Td>     
                     <Td>{row.quantity}</Td>
+                    <Td>{row.date_created}</Td>
                     <Td>
                       {" "}
                       <button onClick={() => handleClickEdit(row)}>Edit</button>

@@ -29,7 +29,7 @@ const Login = () => {
                     withCredentials: true
                 }
             );
-            const {roles,jwt} = response?.data?.roles;
+            const {roles,jwt} = response?.data;
             const accessToken= jwt;
             setAuth({ email, password, roles, accessToken });
             setUser('');

@@ -4,17 +4,12 @@ from . models import *
 class ReactSerializer(serializers.ModelSerializer):
     class Meta:
         model = React
-        fields = ['id','itemName', 'department','listPrice','sale','cost','quantity','category']
-
-class InventoryItemSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = InventoryItem
-        fields = '__all__'
+        fields = ['id','itemName', 'department','listPrice','sale','cost','quantity','category','date_created']
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'name', 'email', 'password', 'is_staff','roles']
+        fields = ['id', 'name', 'email', 'password', 'is_staff','roles','date_created']
         extra_kwargs = {
             'password': {'write_only': True}
         }

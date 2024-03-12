@@ -12,7 +12,7 @@ const Home = () => {
 
   useEffect(() => {
     fetchData();
-  }, [data]);
+  }, []);
 
   const fetchData = () => {
     axios

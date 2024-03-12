@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.utils import timezone
 
 
 class React(models.Model):
@@ -10,11 +11,7 @@ class React(models.Model):
     sale = models.BooleanField(default=False)
     cost = models.DecimalField(max_digits=10, decimal_places=2,null=True)
     quantity = models.IntegerField(null=True)
-
-class InventoryItem(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField()
-    quantity = models.IntegerField()
+    date_created = models.DateField(default=timezone.now)
 
 class User(AbstractUser):
     username = models.CharField(max_length=255,null=True)
@@ -23,5 +20,6 @@ class User(AbstractUser):
     name = models.CharField(max_length=255,null=True)
     is_staff = models.BooleanField(default=False)
     roles = models.CharField(max_length=255,null=True)
+    date_created = models.DateField(default=timezone.now)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []

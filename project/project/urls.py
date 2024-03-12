@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from app.views import ReactView, InventoryItemListView, InventoryItemDetailView, RegisterView, LoginView, UserView, LogoutView
+from app.views import ReactView, RegisterView, LoginView, UserView, LogoutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,8 +25,6 @@ urlpatterns = [
     path('post/', ReactView.as_view(), name='anything'),
     path('delete/<int:pk>', ReactView.as_view(), name='anything'),
     path('put/<int:pk>', ReactView.as_view(), name='anything'),
-    path('items/', InventoryItemListView.as_view(), name='item-list'),
-    path('items/<int:pk>/', InventoryItemDetailView.as_view(), name='item-detail'),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('register', RegisterView.as_view()),
