@@ -1,0 +1,43 @@
+
+
+Copy code
+# Dependency directories
+frontend/node_modules/
+
+# Production build directory
+frontend/build/
+
+# Environment file
+.env
+project/.venv
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local development settings
+.env
+
+# Database
+db.sqlite3
+
+# Static files
+/staticfiles/
+
+# Media files
+/media/
+
+# Log files
+*.log
+
+# Environment variables file
+.env
+
+# IDE files
+.idea/
+.vscode/
+
+# Python virtual environment
+project/.venv/
+.venv/
