@@ -1,0 +1,4 @@
+djangorestframework>=3.*
+django-cors-headers>=3.*
+psycopg2>=2.*
+psycopg2-binary~=2.8.6
