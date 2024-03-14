@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { BASE_URL } from "../api/axios";
+import axios from "../api/axios";
+const POST_INVENTORY_URL = 'postInventory';
+const UPDATE_INVENTORY ='updateInventory/'
+const DELETE_INVENTORY ='deleteInventory/'
 
 const Modal = ({
   isOpen,
@@ -27,12 +29,15 @@ const Modal = ({
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (action === "add") {
-      console.log("mehmet", formData);
       try {
-        const response = await axios.post(
-          (`${BASE_URL}/post/`),
-          formData
-        );
+      const response = await axios.post(
+        POST_INVENTORY_URL,
+        formData,
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );   
         onAddOrUpdate(response.data);
         setFormData({});
         closeModal();
@@ -42,7 +47,7 @@ const Modal = ({
     } else if (action === "edit") {
       try {
         const response = await axios.put(
-          `${BASE_URL}/put/${formData.id}`,
+          `${UPDATE_INVENTORY}${formData.id}`,
           formData
         );
         onAddOrUpdate(response.data);
@@ -53,8 +58,8 @@ const Modal = ({
       }
     } else if (action === "delete") {
       try {
-        await axios
-        .delete(`${BASE_URL}/delete/${formData.id}`);
+        await axios.delete(
+          `${DELETE_INVENTORY}${formData.id}`);
         onDelete(item.id);
         closeModal();
       } catch (error) {

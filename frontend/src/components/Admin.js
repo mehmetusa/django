@@ -1,12 +1,14 @@
 import { useNavigate, Link } from "react-router-dom";
 import AuthContext from "../context/AuthProvider";
 import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
+import axios from 'axios';
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 import Modal from "./Modal";
 import Loading from "./Loading";
 import { BASE_URL } from "../api/axios";
+const GET_INVENTORY_URL = "getInventory";
+const DELETE_INVENTORY ='deleteInventory/'
 
 const Admin = () => {
   const { setAuth } = useContext(AuthContext);
@@ -23,7 +25,7 @@ const Admin = () => {
 
   const fetchData = () => {
     axios
-      .get(`${BASE_URL}/get/`)
+      .get(`${BASE_URL+GET_INVENTORY_URL}`)
       .then((res) => {
         setData(res.data);
         setIsLoading(false);
@@ -31,16 +33,6 @@ const Admin = () => {
       .catch((err) => {
         console.log(err);
       });
-  };
-
-  const logout = async () => {
-    try {
-      localStorage.removeItem("authToken");
-      setAuth(null);
-      navigate("/login");
-    } catch (error) {
-      console.error("Logout failed:", error);
-    }
   };
 
   const handleClickEdit = (row) => {
@@ -66,7 +58,7 @@ const Admin = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${BASE_URL}/delete/${id}/`);
+      await axios.delete(`${BASE_URL+DELETE_INVENTORY}${id}`);
       setData(data.filter((item) => item.id !== id));
     } catch (error) {
       console.error("Error deleting item:", error);
@@ -77,9 +69,6 @@ const Admin = () => {
     <section>
       <h1>Admins Page</h1>
       <br />
-      <div className="flexGrow">
-        <Link to="/">Home</Link>
-      </div>
       {isLoading ? (
         <Loading />
       ) : (
@@ -111,7 +100,7 @@ const Admin = () => {
                     <Td>
                       {" "}
                       <button onClick={() => handleClickEdit(row)}>Edit</button>
-                      <button onClick={() => handleDelete(row.id)}>
+                      <button style={{ backgroundColor: 'red', color: 'white', marginLeft: '10px' }} onClick={() => handleDelete(row.id)}>
                         Delete
                       </button>
                     </Td>
@@ -121,9 +110,6 @@ const Admin = () => {
             </Table>
 
             <button onClick={handleClickAdd}>Add</button>
-            <div className="flexGrow">
-              <button onClick={logout}>Sign Out</button>
-            </div>
           </div>
           <div>
             {isOpen && (

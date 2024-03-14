@@ -123,3 +123,8 @@ li {
     justify-content: flex-start;
     align-items: flex-end;
 }
+
+
+.Nav > a{
+    padding-right: 10px; 
+}

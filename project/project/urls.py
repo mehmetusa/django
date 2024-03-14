@@ -14,17 +14,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from app.views import ReactView, RegisterView, LoginView, UserView, LogoutView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('get/', ReactView.as_view(), name="anything"),
-    path('post/', ReactView.as_view(), name='anything'),
-    path('delete/<int:pk>', ReactView.as_view(), name='anything'),
-    path('put/<int:pk>', ReactView.as_view(), name='anything'),
+    path('getInventory', ReactView.as_view(), name="add_inventory"),
+    path('postInventory', ReactView.as_view(), name='post_inventory'),
+    path('deleteInventory/<int:pk>', ReactView.as_view(), name='delete_inventory'),
+    path('updateInventory/<int:pk>', ReactView.as_view(), name='update_inventory'),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('register', RegisterView.as_view()),

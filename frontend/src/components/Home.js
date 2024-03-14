@@ -4,6 +4,8 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
+import { BASE_URL } from "../api/axios";
+const GET_INVENTORY_URL = "getInventory";
 
 const Home = () => {
   const { setAuth } = useContext(AuthContext);
@@ -16,32 +18,19 @@ const Home = () => {
 
   const fetchData = () => {
     axios
-      .get("http://127.0.0.1:8000/get/")
+      .get(`${BASE_URL+GET_INVENTORY_URL}`)
       .then((res) => {
         setData(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  };
-
-  const logout = async () => {
-    try {
-      localStorage.removeItem("authToken");
-      setAuth(null);
-      navigate("/login");
-    } catch (error) {
-      console.error("Logout failed:", error);
-    }
-  };
+  }
 
   return (
     <section>
-      <h1>Admins Page</h1>
+      <h1>Public Home Page</h1>
       <br />
-      <div className="flexGrow">
-        <Link to="/">Home</Link>
-      </div>
       <div>
       <Table>
               <Thead>
@@ -66,10 +55,7 @@ const Home = () => {
                 ))}
               </Tbody>
             </Table>
-        <div className="flexGrow">
-          <button onClick={logout}>Sign Out</button>
-        </div>
-      </div>
+            </div>
     </section>
   );
 };

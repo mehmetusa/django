@@ -58,19 +58,15 @@ const Register = () => {
       return;
     }
     try {
-      const response = await axios.post(
+      await axios.post(
         REGISTER_URL,
         JSON.stringify({ email, password }),
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
         }
-      );
-      // TODO: remove console.logs before deployment
-      console.log(JSON.stringify(response?.data));
-      //console.log(JSON.stringify(response))
+      )
       setSuccess(true);
-      //clear state and controlled inputs
       setUser("");
       setPwd("");
       setMatchPwd("");
