@@ -1,6 +1,4 @@
-import { useNavigate, Link } from "react-router-dom";
-import AuthContext from "../context/AuthProvider";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
@@ -11,8 +9,6 @@ const GET_INVENTORY_URL = "getInventory";
 const DELETE_INVENTORY ='deleteInventory/'
 
 const Admin = () => {
-  const { setAuth } = useContext(AuthContext);
-  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);

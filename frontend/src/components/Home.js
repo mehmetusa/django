@@ -1,6 +1,4 @@
-import { useNavigate, Link } from "react-router-dom";
-import AuthContext from "../context/AuthProvider";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
@@ -8,8 +6,6 @@ import { BASE_URL } from "../api/axios";
 const GET_INVENTORY_URL = "getInventory";
 
 const Home = () => {
-  const { setAuth } = useContext(AuthContext);
-  const navigate = useNavigate();
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -40,7 +36,6 @@ const Home = () => {
                   <Th>Category</Th>
                   <Th>List Price</Th>
                   <Th>Quantity</Th>
-                  <Th>ACTION</Th>
                 </Tr>
               </Thead>
               <Tbody>
